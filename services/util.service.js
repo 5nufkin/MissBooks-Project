@@ -34,3 +34,10 @@ export function loadFromStorage(key) {
     const data = localStorage.getItem(key)
     return (data) ? JSON.parse(data) : undefined
 }
+
+export function formatCurrency(amount, currencyCode) {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: currencyCode
+  }).format(amount);
+}
