@@ -1,0 +1,25 @@
+.tags {
+  display: flex;
+  gap: 15px;
+  color: #ccc;
+  font-size: 1rem;
+}
+
+.price.red{
+  color: red;
+}
+
+.price.green{
+  color: green;
+}
+
+.img-container{
+  position: relative;
+}
+
+.img-container .sale-sticker{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 32%;
+}
