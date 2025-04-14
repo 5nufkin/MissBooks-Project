@@ -7,7 +7,7 @@ export function BookPreview({ book }) {
 
   function getSaleTag() {
     // if (listPrice.isOnSale) return <img className="sale" src="../assets/img/sale.png" alt="" />
-    if (listPrice.isOnSale) return <img className="sale" src={saleImg} alt="" />
+    if (listPrice.isOnSale) return <img className="sale" src={`${saleImg}`} alt="" />
     return null
   }
 
