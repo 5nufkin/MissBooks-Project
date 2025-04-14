@@ -1,5 +1,5 @@
 import { formatCurrency } from "../services/util.service.js"
-import saleImg from '/assets/img/sale.png'
+import saleImg from '../assets/img/sale.png'
 
 export function BookPreview({ book }) {
 
@@ -7,7 +7,7 @@ export function BookPreview({ book }) {
 
   function getSaleTag() {
     // if (listPrice.isOnSale) return <img className="sale" src="../assets/img/sale.png" alt="" />
-    if (listPrice.isOnSale) return <img className="sale" src={saleImg} alt="" />
+    if (listPrice.isOnSale) return <img className="sale" src="/assets/img/sale.png" alt="" />
     return null
   }
 
