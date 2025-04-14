@@ -35,7 +35,7 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
 
   const bookCtgs = bookService.getBookCtgs()
 
-  const { txt, minPrice } = filterByToEdit
+  const { txt, minPrice, publishedSince } = filterByToEdit
 
   return (
     <section className="book-filter container">
@@ -54,6 +54,15 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
           <option value="">Select a category</option>
           {bookCtgs.map(category => <option key={category} value={category}>{category}</option>)}
         </select>
+
+        <label htmlFor="onSale">
+          <input onChange={handleChange} type="checkbox" name="onSale" id="onSale" />
+          On Sale
+        </label>
+
+        <label htmlFor="publishedSince">Published after: {publishedSince}
+          <input onChange={handleChange} type="range" id="publishedSince" name="publishedSince" value={publishedSince} min="1950" max={new Date().getFullYear()} />
+        </label>
 
         <button>Submit</button>
       </form>

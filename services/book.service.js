@@ -28,6 +28,12 @@ function query(filterBy = {}) {
       if (filterBy.category) {
         books = books.filter(book => book.categories.some(category => category === filterBy.category))
       }
+      if (filterBy.onSale) {
+        books = books.filter(book => book.listPrice.isOnSale)
+      }
+      if (filterBy.publishedSince) {
+        books = books.filter(book => book.publishedDate >= filterBy.publishedSince)
+      }
       return books
     })
 }
@@ -54,7 +60,7 @@ function getEmptyBook(title = '', price = '') {
 }
 
 function getDefaultFilter() {
-  return { txt: '', minPrice: '' }
+  return { txt: '', minPrice: '', publishedSince: 1978 }
 }
 
 function _createBooks() {
