@@ -5,12 +5,12 @@ button {
     border: 1px solid var(--clr2);
     padding: 0.5em 0.8em;
     border-radius: 4px;
+    transition: 0.3s;
 }
 
 button:hover {
     background-color: var(--clr2);
     color: white;
-    transition: 0.3s;
 }
 
 input:focus {

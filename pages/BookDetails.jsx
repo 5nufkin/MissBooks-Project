@@ -17,13 +17,13 @@ export function BookDetails({ bookId, onBack }) {
     }
     
     if (!book) return <div>Loading...</div>
-    const { vendor, speed } = book
+    const { title, price } = book
     return (
         <section className="book-details container">
-            <h1>Book Vendor: {vendor}</h1>
-            <h1>Book Speed: {speed}</h1>
+            <h1>Book Title: {title}</h1>
+            <h1>Book Price: {price}</h1>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis quae fuga eveniet, quisquam ducimus modi optio in alias accusantium corrupti veritatis commodi tenetur voluptate deserunt nihil quibusdam. Expedita, architecto omnis?</p>
-            <img src={`../assets/img/${vendor}.png`} alt="Book Image" />
+            <img src={`../assets/img/${title}.jpg`} alt="Book Image" />
             <button onClick={onBack}>Back</button>
         </section>
     )
