@@ -28,9 +28,9 @@ export function BookDetails({ bookId, onBack }) {
 
   function getBookAgeTag() {
     const publishYear = book.publishedDate
-    const currYear = new Date().getFullYear()
-    if (currYear - publishYear > 10) return 'Vintage'
-    if (currYear - publishYear <= 1) return 'New'
+    const presentYear = new Date().getFullYear()
+    if (presentYear - publishYear > 10) return 'Vintage'
+    if (presentYear - publishYear <= 1) return 'New'
     return null
   }
 

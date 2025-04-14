@@ -11,7 +11,8 @@ export const bookService = {
   remove,
   save,
   getEmptyBook,
-  getDefaultFilter
+  getDefaultFilter,
+  getBookCtgs
 }
 
 function query(filterBy = {}) {
@@ -22,7 +23,10 @@ function query(filterBy = {}) {
         books = books.filter(book => regExp.test(book.title))
       }
       if (filterBy.minPrice) {
-        books = books.filter(book => book.price >= filterBy.minPrice)
+        books = books.filter(book => book.listPrice.amount >= filterBy.minPrice)
+      }
+      if (filterBy.category) {
+        books = books.filter(book => book.categories.some(category => category === filterBy.category))
       }
       return books
     })
@@ -55,11 +59,16 @@ function getDefaultFilter() {
 
 function _createBooks() {
   const books = loadFromStorage(BOOK_KEY)
+  console.log(books)
   if (!books || !books.length) _createDemoBooks()
 }
 
+function getBookCtgs() {
+  return ['Love', 'Fiction', 'Poetry', 'Computers', 'Religion']
+}
+
 function _createDemoBooks() {
-  const ctgs = ['Love', 'Fiction', 'Poetry', 'Computers', 'Religion']
+  const ctgs = getBookCtgs()
   const books = []
   for (let i = 0; i < 20; i++) {
     const book = {
