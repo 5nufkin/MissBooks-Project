@@ -1,0 +1,21 @@
+.visible-text {
+  display: inline-block;
+}
+
+.btn-toggle-expand {
+  margin-block: 0;
+  background-color: #eee;
+  border: 1px solid #777;
+}
+
+.btn-toggle-expand:hover{
+  background-color: #ccc;
+  color: inherit;
+}
+
+.visible-text,
+.btn-toggle-expand {
+  display: inline-block;
+  margin-bottom: 1.2rem;
+  vertical-align: bottom;
+}

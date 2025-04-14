@@ -1,12 +1,12 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 
 body {
-    margin: 0;
-    color: var(--gray3);
-    font-size: 1.2rem;
+  margin: 0;
+  color: var(--gray3);
+  font-size: 1.2rem;
 }
 
 h1,
@@ -15,17 +15,17 @@ h3,
 h4,
 h5,
 h6 {
-    margin: .5em 0 .5em;
-    font-family: 'Edu VIC WA NT Beginner', cursive;
+  margin: .5em 0 .5em;
+  font-family: 'Roboto', sans-serif;
 }
 
 p {
-    margin: 0 0 1em;
+  margin: 0 0 1em;
 }
 
 a {
-    text-decoration: none;
-    color: unset;
+  text-decoration: none;
+  color: unset;
 }
 
 
@@ -35,10 +35,10 @@ img,
 embed,
 video,
 object {
-    max-width: 100%
+  max-width: 100%
 }
 
 /* Simple and useful CSS Debugging Technique */
 .debug * {
-    outline: 1px solid gold
+  outline: 1px solid gold
 }
