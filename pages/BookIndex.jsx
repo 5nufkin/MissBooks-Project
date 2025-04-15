@@ -1,3 +1,5 @@
+const { Outlet } = ReactRouterDOM
+
 import { BookFilter } from "../cmps/BookFilter.jsx"
 import { BookList } from "../cmps/BookList.jsx"
 import { bookService } from "../services/book.service.js"
@@ -9,7 +11,6 @@ export function BookIndex() {
 
   const [books, setBooks] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
-  const [selectedBookId, setSelectedBookId] = useState(null)
   const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
   // console.log('filterBy:', filterBy)
 
@@ -33,45 +34,32 @@ export function BookIndex() {
       .finally(() => setIsLoading(false))
   }
 
-  function onSelectBookId(bookId) {
-    setSelectedBookId(bookId)
-  }
-
   function onSetFilterBy(filterByToEdit) {
     setFilterBy(prevFilter => ({ ...prevFilter, ...filterByToEdit }))
   }
 
 
   const loadingClass = isLoading ? 'loading' : ''
-  // console.log('selectedBookId:', selectedBookId)
+
   return (
     <section className="book-index">
 
-      {selectedBookId &&
-        <BookDetails
-          onBack={() => onSelectBookId(null)}
-          bookId={selectedBookId}
-        />
-      }
-
-      {!selectedBookId && (
+      {(
         books
           ? <React.Fragment>
             <BookFilter
               onSetFilterBy={onSetFilterBy}
               filterBy={filterBy}
-              categories = {bookService.getBookCtgs()}
+              categories={bookService.getBookCtgs()}
             />
             <BookList
               loadingClass={loadingClass}
               books={books}
               onRemoveBook={onRemoveBook}
-              onSelectBookId={onSelectBookId}
             />
           </React.Fragment>
           : <div>Loading...</div>
       )}
     </section>
   )
-
 }

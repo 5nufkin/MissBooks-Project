@@ -5,21 +5,27 @@
   font-size: 1rem;
 }
 
-.price.red{
+.price.red {
   color: red;
 }
 
-.price.green{
+.price.green {
   color: green;
 }
 
-.img-container{
+.img-container {
   position: relative;
+  margin-inline: auto;
 }
 
-.img-container .sale-sticker{
+.img-container .sale-sticker {
   position: absolute;
   right: 0;
   bottom: 0;
   width: 32%;
+}
+
+.buttons-container {
+  display: flex;
+  margin-inline: auto;
 }

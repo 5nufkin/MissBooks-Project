@@ -2,20 +2,26 @@ import { LongTxt } from "../cmps/LongTxt.jsx"
 import { bookService } from "../services/book.service.js"
 import { formatCurrency } from "../services/util.service.js"
 
+const { useParams, useNavigate, Link } = ReactRouterDOM
 const { useState, useEffect } = React
 
-export function BookDetails({ bookId, onBack }) {
+export function BookDetails() {
 
   const [book, setBook] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const params = useParams()
+  const navigate = useNavigate()
 
   useEffect(() => {
     loadBook()
-  }, [])
+  }, [params.bookId])
 
   function loadBook() {
-    bookService.get(bookId)
+    setIsLoading(true)
+    bookService.get(params.bookId)
       .then(book => setBook(book))
       .catch(err => console.log('err:', err))
+      .finally(() => setIsLoading(false))
   }
 
   function getReadLevelTag() {
@@ -45,8 +51,14 @@ export function BookDetails({ bookId, onBack }) {
     return null
   }
 
-  if (!book) return <div>Loading...</div>
+  function onBack() {
+    navigate('/book')
+  }
+
+  if (isLoading) return <div>Loading...</div>
+
   const { title, listPrice, thumbnail } = book
+
   return (
     <section className="book-details container">
 
@@ -57,13 +69,16 @@ export function BookDetails({ bookId, onBack }) {
 
       </section>
       <h1>Book Price: <span className={`price ${getPriceColorClass()}`}>{formatCurrency(listPrice.amount, listPrice.currencyCode)} </span></h1>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis quae fuga eveniet, quisquam ducimus modi optio in alias accusantium corrupti veritatis commodi tenetur voluptate deserunt nihil quibusdam. Expedita, architecto omnis?</p>
       <LongTxt txt={book.description} />
       <div className="img-container">
         <img src={`${thumbnail}`} alt="Book Image" />
         {getSaleSticker()}
       </div>
-      <button onClick={onBack}>Back</button>
+      <section className="buttons-container">
+        <button onClick={onBack}>Back</button>
+        <button><Link to={`/book/${book.prevBookId}`}>Prev Book</Link></button>
+        <button><Link to={`/book/${book.nextBookId}`}>Next Book</Link></button>
+      </section>
 
     </section>
   )

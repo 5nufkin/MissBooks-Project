@@ -28,7 +28,10 @@ a {
   color: unset;
 }
 
-
+a.active {
+  text-decoration: underline;
+  scale: 1.05;
+}
 
 /* Dont stretch my Media */
 img,
