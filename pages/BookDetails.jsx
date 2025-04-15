@@ -42,7 +42,7 @@ export function BookDetails({ bookId, onBack }) {
   }
 
   function getSaleSticker() {
-    if (book.listPrice.isOnSale) return <img className="sale-sticker" src="../assets/img/saleSticker.png" alt="" />
+    if (book.listPrice.isOnSale) return <img className="sale-sticker" src="assets/img/saleSticker.png" alt="" />
     return null
   }
 
