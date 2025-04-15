@@ -1,4 +1,4 @@
-const { Outlet } = ReactRouterDOM
+const { Link } = ReactRouterDOM
 
 import { BookFilter } from "../cmps/BookFilter.jsx"
 import { BookList } from "../cmps/BookList.jsx"
@@ -52,6 +52,7 @@ export function BookIndex() {
               filterBy={filterBy}
               categories={bookService.getBookCtgs()}
             />
+            <Link to="/book/edit">Add Book</Link>
             <BookList
               loadingClass={loadingClass}
               books={books}

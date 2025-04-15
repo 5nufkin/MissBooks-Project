@@ -55,6 +55,10 @@ export function BookDetails() {
     navigate('/book')
   }
 
+  function onEdit() {
+    navigate(`/book/edit/${book.id}`)
+  }
+
   if (isLoading) return <div>Loading...</div>
 
   const { title, listPrice, thumbnail } = book
@@ -76,6 +80,7 @@ export function BookDetails() {
       </div>
       <section className="buttons-container">
         <button onClick={onBack}>Back</button>
+        <button onClick={onEdit}>Edit</button>
         <button><Link to={`/book/${book.prevBookId}`}>Prev Book</Link></button>
         <button><Link to={`/book/${book.nextBookId}`}>Next Book</Link></button>
       </section>

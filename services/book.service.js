@@ -56,8 +56,18 @@ function save(book) {
   }
 }
 
-function getEmptyBook(title = '', price = '') {
-  return { title, price }
+function getEmptyBook(title = '', amount = '', description = '', pageCount = '', language = 'en', authors = '') {
+
+  return {
+    title,
+    description,
+    publishedDate: utilService.getRandomIntInclusive(1950, 2024),
+    pageCount,
+    language,
+    authors,
+    listPrice: { amount, currencyCode: 'EUR', isOnSale: Math.random() > 0.7 },
+    reviews: []
+  }
 }
 
 function getDefaultFilter() {
