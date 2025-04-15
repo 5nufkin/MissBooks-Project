@@ -57,7 +57,11 @@ export function BookIndex() {
       {!selectedBookId && (
         books
           ? <React.Fragment>
-            <BookFilter onSetFilterBy={onSetFilterBy} filterBy={filterBy} />
+            <BookFilter
+              onSetFilterBy={onSetFilterBy}
+              filterBy={filterBy}
+              categories = {bookService.getBookCtgs()}
+            />
             <BookList
               loadingClass={loadingClass}
               books={books}

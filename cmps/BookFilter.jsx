@@ -1,8 +1,6 @@
-import { bookService } from "../services/book.service.js"
-
 const { useState, useEffect } = React
 
-export function BookFilter({ filterBy, onSetFilterBy }) {
+export function BookFilter({ filterBy, onSetFilterBy, categories }) {
 
   const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
 
@@ -33,8 +31,6 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
     onSetFilterBy(filterByToEdit)
   }
 
-  const bookCtgs = bookService.getBookCtgs()
-
   const { txt, minPrice, publishedSince } = filterByToEdit
 
   return (
@@ -52,7 +48,7 @@ export function BookFilter({ filterBy, onSetFilterBy }) {
         <label htmlFor="category">Category</label>
         <select onChange={handleChange} name="category" id="category">
           <option value="">Select a category</option>
-          {bookCtgs.map(category => <option key={category} value={category}>{category}</option>)}
+          {categories.map(category => <option key={category} value={category}>{category}</option>)}
         </select>
 
         <label htmlFor="onSale">

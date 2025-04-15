@@ -3,22 +3,27 @@ const { useState } = React
 export function LongTxt({ txt, length = 100 }) {
   const [isExpanded, setIsExpanded] = useState(false)
 
-  if (txt.split(' ').length <= length) return (<p>{txt}</p>)
+  if (txt.length <= length) return (<p>{txt}</p>)
 
-
-  const visibleWords =
+  const visibleText =
     isExpanded
       ? txt
-      : txt.split(' ').slice(0, length).join(' ') + '...'
+      : txt.substring(0, length) + '...'
 
-  function toggleTextExpantion() {
+  function onToggleTextExpantion() {
     setIsExpanded(prevIsExpanded => !prevIsExpanded)
   }
 
   return (
     <section className="long-text">
-      <p className="visible-text">{visibleWords}</p>
-      <button onClick={toggleTextExpantion} className="btn-toggle-expand" >{isExpanded ? 'Read less' : 'Read more'}</button>
+      <p className="visible-text">{visibleText}</p>
+
+      <button
+        onClick={onToggleTextExpantion}
+        className="btn-toggle-expand" >
+        {isExpanded ? 'Read less' : 'Read more'}
+      </button>
+
     </section>
   )
 }

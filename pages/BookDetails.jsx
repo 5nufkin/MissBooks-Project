@@ -9,7 +9,6 @@ export function BookDetails({ bookId, onBack }) {
   const [book, setBook] = useState(null)
 
   useEffect(() => {
-    console.log('Mounting Details')
     loadBook()
   }, [])
 
@@ -59,7 +58,7 @@ export function BookDetails({ bookId, onBack }) {
       </section>
       <h1>Book Price: <span className={`price ${getPriceColorClass()}`}>{formatCurrency(listPrice.amount, listPrice.currencyCode)} </span></h1>
       <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis quae fuga eveniet, quisquam ducimus modi optio in alias accusantium corrupti veritatis commodi tenetur voluptate deserunt nihil quibusdam. Expedita, architecto omnis?</p>
-      <LongTxt txt={book.description} length={10} />
+      <LongTxt txt={book.description} />
       <div className="img-container">
         <img src={`${thumbnail}`} alt="Book Image" />
         {getSaleSticker()}
