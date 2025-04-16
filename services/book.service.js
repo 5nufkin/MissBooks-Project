@@ -15,6 +15,7 @@ export const bookService = {
   getBookCtgs,
   getEmptyReview,
   saveReview,
+  getFilterFromSearchParams
 }
 
 function query(filterBy = {}) {
@@ -51,6 +52,7 @@ function remove(bookId) {
 }
 
 function save(book) {
+  console.log(book)
   if (book.id) {
     return storageService.put(BOOK_KEY, book)
   } else {
@@ -126,7 +128,7 @@ function _createDemoBooks() {
       description: utilService.makeLorem(20),
       pageCount: utilService.getRandomIntInclusive(20, 600),
       categories: [ctgs[utilService.getRandomIntInclusive(0, ctgs.length - 1)]],
-      thumbnail: `http://coding-academy.org/books-photos/${i + 1}.jpg`,
+      thumbnail: `assets/img/${i + 1}.jpg`,
       language: "en",
       listPrice: {
         amount: utilService.getRandomIntInclusive(80, 500),
@@ -155,4 +157,20 @@ function _setNextPrevBookId(book) {
     book.nextBookId = nextBook.id
     return book
   })
+}
+
+function getFilterFromSearchParams(searchParams) {
+  const txt = searchParams.get('txt') || ''
+  const minSpeed = searchParams.get('minPrice') || ''
+  const category = searchParams.get('category') || ''
+  const onSale = searchParams.get('onSale') || ''
+  const publishedSince = searchParams.get('publishedSince') || ''
+
+  return {
+    txt,
+    minSpeed,
+    category,
+    onSale,
+    publishedSince
+  }
 }

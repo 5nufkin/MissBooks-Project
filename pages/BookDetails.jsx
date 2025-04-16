@@ -78,8 +78,6 @@ export function BookDetails() {
 
   const { title, listPrice, thumbnail } = book
 
-  console.log(book.reviews)
-
   return (
     <section className="book-details container">
 

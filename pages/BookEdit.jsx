@@ -11,6 +11,7 @@ export function BookEdit() {
   const params = useParams()
   const navigate = useNavigate()
 
+  console.log(bookToEdit)
 
   useEffect(() => {
     if (params.bookId) {

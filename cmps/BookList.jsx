@@ -3,7 +3,6 @@ const { Link } = ReactRouterDOM
 import { BookPreview } from "./BookPreview.jsx";
 
 export function BookList({ loadingClass, books, onRemoveBook }) {
-
   if (!books.length) return <div>No Books To Show...</div>
   return (
     <ul className="book-list container">

@@ -1,0 +1,21 @@
+.btn-rating-star{
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: none;
+  filter: grayscale(.8);
+}
+
+.btn-rating-star:hover{
+  background-color: transparent;
+  filter: grayscale(0);
+  transition: filter 0s;
+  scale: 1.2;
+}
+
+.bright{
+  filter: grayscale(0);
+  transition: filter 0s;
+  scale: 1.2;
+}
