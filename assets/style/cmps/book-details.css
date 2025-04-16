@@ -29,3 +29,41 @@
   display: flex;
   margin-inline: auto;
 }
+
+.add-review-container {
+  align-self: center;
+  margin-block-end: 10px;
+}
+
+.reviews-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: auto;
+  width: 70%;
+}
+
+.reviews-list {
+  list-style: none;
+  padding: 0;
+}
+
+.review-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background-color: #ccc;
+  width: 100%;
+  border-radius: 1rem;
+  padding: 10px 15px;
+
+
+  h3 {
+    margin: 0;
+  }
+
+  p {
+    display: flex;
+    flex-direction: column;
+  }
+}

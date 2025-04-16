@@ -1,0 +1,10 @@
+.add-review{
+  border: 1px solid #333;
+  padding: 15px;
+}
+
+.review-form{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+}

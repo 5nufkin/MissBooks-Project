@@ -1,8 +1,10 @@
+import { AddReview } from "../cmps/AddReview.jsx"
 import { LongTxt } from "../cmps/LongTxt.jsx"
 import { bookService } from "../services/book.service.js"
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 import { formatCurrency } from "../services/util.service.js"
 
-const { useParams, useNavigate, Link } = ReactRouterDOM
+const { useParams, useNavigate, Link, Outlet } = ReactRouterDOM
 const { useState, useEffect } = React
 
 export function BookDetails() {
@@ -59,9 +61,24 @@ export function BookDetails() {
     navigate(`/book/edit/${book.id}`)
   }
 
+  function onAddReview(review) {
+
+    bookService.saveReview(book.id, review)
+      .then((updatedBook) => {
+        showSuccessMsg('Review added successfully')
+        setBook(updatedBook)
+      })
+      .catch(err => {
+        console.log('err', err)
+        showErrorMsg('Error! Could not add review.')
+      })
+  }
+
   if (isLoading) return <div>Loading...</div>
 
   const { title, listPrice, thumbnail } = book
+
+  console.log(book.reviews)
 
   return (
     <section className="book-details container">
@@ -78,13 +95,43 @@ export function BookDetails() {
         <img src={`${thumbnail}`} alt="Book Image" />
         {getSaleSticker()}
       </div>
+
       <section className="buttons-container">
         <button onClick={onBack}>Back</button>
         <button onClick={onEdit}>Edit</button>
+
+        <button><Link to={`/book/${book.id}/review`}>Review this book</Link></button>
+
         <button><Link to={`/book/${book.prevBookId}`}>Prev Book</Link></button>
         <button><Link to={`/book/${book.nextBookId}`}>Next Book</Link></button>
       </section>
 
-    </section>
+      {book.reviews &&
+        < section className="reviews-container">
+          <ul className="reviews-list">
+            {book.reviews.map((review, idx) => {
+              const ratingSymbol = '⭐'
+              return (
+
+                <li className="review-item" key={idx}>
+
+                  <h3>{review.fullName}:</h3>
+                  <p>
+                    <span>Rating: {ratingSymbol.repeat(review.rating)}</span>
+                    <span>Read at: {review.readAt}</span>
+                  </p>
+
+                </li>
+              )
+            }
+            )}
+          </ul>
+        </section>
+      }
+
+      <section className="add-review-container">
+        <AddReview onAddReview={onAddReview} bookId={book.id} />
+      </section>
+    </section >
   )
 }

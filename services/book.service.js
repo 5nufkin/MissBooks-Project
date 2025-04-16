@@ -12,7 +12,9 @@ export const bookService = {
   save,
   getEmptyBook,
   getDefaultFilter,
-  getBookCtgs
+  getBookCtgs,
+  getEmptyReview,
+  saveReview,
 }
 
 function query(filterBy = {}) {
@@ -68,6 +70,31 @@ function getEmptyBook(title = '', amount = '', description = '', pageCount = '',
     listPrice: { amount, currencyCode: 'EUR', isOnSale: Math.random() > 0.7 },
     reviews: []
   }
+}
+
+function getEmptyReview(fullName = '', rating = '', readAt = '') {
+  return {
+    fullName,
+    rating,
+    readAt
+  }
+}
+
+function saveReview(bookId, review) {
+  return get(bookId)
+    .then(book => {
+
+      if (book.reviews) {
+        console.log('book FROM SAVE AND IF TRUE:', book)
+        book.reviews.unshift(review)
+        return storageService.put(BOOK_KEY, book)
+
+      } else {
+        console.log('book FROM SAVE AND ELSE:', book)
+        book.reviews = [review]
+        return storageService.put(BOOK_KEY, book)
+      }
+    })
 }
 
 function getDefaultFilter() {
